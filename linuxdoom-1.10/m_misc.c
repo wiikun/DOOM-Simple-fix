@@ -59,6 +59,8 @@ rcsid[] = "$Id: m_misc.c,v 1.6 1997/02/03 22:45:10 b1 Exp $";
 
 #include "m_misc.h"
 
+extern char *chat_macros[10];
+
 //
 // M_DrawText
 // Returns the final X coordinate
@@ -225,8 +227,8 @@ extern char*	chat_macros[];
 typedef struct
 {
     char*	name;
-    int*	location;
-    int		defaultvalue;
+    char**	location;
+    char*	defaultvalue;
     int		scantranslate;		// PC scan code hack
     int		untranslated;		// lousy hack
 } default_t;
@@ -254,15 +256,15 @@ default_t	defaults[] =
 
 // UNIX hack, to be removed. 
 #ifdef SNDSERV
-    {"sndserver", (int *) &sndserver_filename, (int) "sndserver"},
+    {"sndserver",&sndserver_filename,"sndserver",0,0},
     {"mb_used", &mb_used, 2},
 #endif
     
 #endif
 
 #ifdef LINUX
-    {"mousedev", (int*)&mousedev, (int)"/dev/ttyS0"},
-    {"mousetype", (int*)&mousetype, (int)"microsoft"},
+    {"mousedev",&mousedev,"/dev/ttyS0"},
+    {"mousetype",&mousetype,"microsoft"},
 #endif
 
     {"use_mouse",&usemouse, 1},
@@ -285,16 +287,16 @@ default_t	defaults[] =
 
     {"usegamma",&usegamma, 0},
 
-    {"chatmacro0", (int *) &chat_macros[0], (int) HUSTR_CHATMACRO0 },
-    {"chatmacro1", (int *) &chat_macros[1], (int) HUSTR_CHATMACRO1 },
-    {"chatmacro2", (int *) &chat_macros[2], (int) HUSTR_CHATMACRO2 },
-    {"chatmacro3", (int *) &chat_macros[3], (int) HUSTR_CHATMACRO3 },
-    {"chatmacro4", (int *) &chat_macros[4], (int) HUSTR_CHATMACRO4 },
-    {"chatmacro5", (int *) &chat_macros[5], (int) HUSTR_CHATMACRO5 },
-    {"chatmacro6", (int *) &chat_macros[6], (int) HUSTR_CHATMACRO6 },
-    {"chatmacro7", (int *) &chat_macros[7], (int) HUSTR_CHATMACRO7 },
-    {"chatmacro8", (int *) &chat_macros[8], (int) HUSTR_CHATMACRO8 },
-    {"chatmacro9", (int *) &chat_macros[9], (int) HUSTR_CHATMACRO9 }
+    {"chatmacro0",&chat_macros[0],HUSTR_CHATMACRO0,0,0},
+    {"chatmacro1",&chat_macros[1],HUSTR_CHATMACRO1,0,0},
+    {"chatmacro2",&chat_macros[2],HUSTR_CHATMACRO2,0,0},
+    {"chatmacro3",&chat_macros[3],HUSTR_CHATMACRO3,0,0},
+    {"chatmacro4",&chat_macros[4],HUSTR_CHATMACRO4,0,0},
+    {"chatmacro5",&chat_macros[5],HUSTR_CHATMACRO5,0,0},
+    {"chatmacro6",&chat_macros[6],HUSTR_CHATMACRO6,0,0},
+    {"chatmacro7",&chat_macros[7],HUSTR_CHATMACRO7,0,0},
+    {"chatmacro8",&chat_macros[8],HUSTR_CHATMACRO8,0,0},
+    {"chatmacro9",&chat_macros[9],HUSTR_CHATMACRO9,0,0}
 
 };
 
